@@ -1,0 +1,46 @@
+"""Criando um jogo de adivinhação de palavra (como se fosse uma forca):"""
+
+palavra_secreta = 'perfume'
+digitadas = []
+chances = 3
+
+while True:
+
+    if chances <= 0:
+        print('Desculpe, mas você perdeu.')
+        break
+
+    letra = input('Digite uma letra da palavra secreta: ')
+
+    if len(letra) > 1:
+        print('Ah, isso não vale, uma letra por vez!')
+        continue
+
+    digitadas.append(letra)
+
+    if letra in palavra_secreta:
+        print(f'Parabéns, a letra "{letra}" existe na palavra secreta.')
+    else:
+        print(f'A letra {letra} não existe na palavra secreta.')
+        digitadas.pop()
+
+    secreto_temporario = ''
+    for letra_secreta in palavra_secreta:
+        if letra_secreta in digitadas:
+            secreto_temporario += letra_secreta
+        else:
+            secreto_temporario += '*'
+
+    if secreto_temporario == palavra_secreta:
+        print(f'QUE LEGAL, você ganhou!!! A palavra secreta era {secreto_temporario}!!')
+        break
+    else:
+        print(f'A palavra secreta está atualmente assim: {secreto_temporario}.')
+
+    if letra not in palavra_secreta:
+        chances -= 1
+
+    print(f'Você ainda tem {chances} chances.')
+    print()
+    
+    
